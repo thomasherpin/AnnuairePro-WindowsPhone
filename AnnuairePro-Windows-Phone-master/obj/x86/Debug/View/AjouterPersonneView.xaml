@@ -1,0 +1,68 @@
+﻿<Page 
+    x:Class="AnnuairePro.View.AjouterPersonneView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AnnuairePro.View"
+    xmlns:vm="using:AnnuairePro.ViewModel"
+    xmlns:design="using:AnnuairePro.ViewModel.Design"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="#104e8b">
+
+    <Page.DataContext>
+        <vm:AjouterPersonneViewModel />
+    </Page.DataContext>
+
+    <Grid DataContext="{Binding}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="567*"/>
+            <RowDefinition Height="73*"/>
+        </Grid.RowDefinitions>
+
+        <Image x:Name="image" HorizontalAlignment="Center" Height="130" Margin="32,149,238,287.667" VerticalAlignment="Center" Width="130" Source="{Binding Photo, Mode=TwoWay}"/>
+        <Button x:Name="button" Content="Annuler" HorizontalAlignment="Left" Margin="237,14.333,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.208,-0.234" Command="{Binding AnnulerCommand}"/>
+        <Button x:Name="Valider" Content="Valider" HorizontalAlignment="Left" Margin="32,15.333,0,0" Grid.Row="1" VerticalAlignment="Top" Height="58" Width="109" Command="{Binding AjouterPersonneCommand}"/>
+        <Grid HorizontalAlignment="Left" Height="547" Margin="10,10,0,0" VerticalAlignment="Top" Width="380" RenderTransformOrigin="0.499,0.462" DataContext="{Binding Perso}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="187*"/>
+                <ColumnDefinition Width="193*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="83*"/>
+                <RowDefinition Height="55*"/>
+                <RowDefinition Height="68*"/>
+                <RowDefinition Height="158*"/>
+                <RowDefinition Height="83*"/>
+                <RowDefinition Height="99*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="0,12.667,89.667,10.333" TextWrapping="Wrap" Text="Prénom" VerticalAlignment="Center" FontSize="26.667" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="-0.228,0.084" Height="32" Width="97" Grid.Row="1"/>
+            <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Center" Margin="0,13.667,107.667,21.833" Grid.Row="2" TextWrapping="Wrap" Text="Nom" VerticalAlignment="Center" FontSize="26.667" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="-0.228,0.084" Height="32" Width="79"/>
+            <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Center" Margin="10.333,31.167,-12,61.167" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="26.667" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="-0.228,0.084" Height="66" Width="195" Grid.Column="1">
+        	<Run Text="Chemin"/>
+        	<LineBreak/>
+        	<Run Text="Photo"/>
+            </TextBlock>
+            <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Center" Margin="10,10.833,31.667,1.5" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="26.667" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="-0.228,0.084" Height="71" Width="145" Text="Date de Naissance"/>
+            <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Center" Margin="10,10.5,97.667,56.667" Grid.Row="5" TextWrapping="Wrap" Text="Mail" VerticalAlignment="Center" FontSize="26.667" FontWeight="Bold" FontStyle="Italic" RenderTransformOrigin="-0.228,0.084" Height="32" Width="79"/>
+
+            <TextBox x:Name="textBox" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="8.333,10.667,0,0" TextWrapping="Wrap" Text="{Binding Prenom, Mode=TwoWay}" VerticalAlignment="Top" Width="174" Grid.Row="1"/>
+            <TextBox x:Name="textBox_Copy" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="9.333,10.667,0,0" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Nom, Mode=TwoWay}" VerticalAlignment="Top" Width="174"/>
+            <TextBox x:Name="textBox_Copy1" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="10.333,102.167,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Photo, Mode=TwoWay}" VerticalAlignment="Top" Width="174"/>
+            <TextBox x:Name="textBox_Copy2" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="9.333,35.833,0,0" Grid.Row="4" TextWrapping="Wrap" Text="{Binding DateNaissance, Mode=TwoWay}" VerticalAlignment="Top" Width="173"/>
+            <TextBox x:Name="textBox_Copy3" HorizontalAlignment="Left" Height="34" Margin="11.132,54.021,0,0" Grid.Row="5" TextWrapping="Wrap" Text="{Binding Mail, Mode=TwoWay}" VerticalAlignment="Top" Width="351.491" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Grid.ColumnSpan="2">
+                <TextBox.RenderTransform>
+                    <CompositeTransform Rotation="-0.308"/>
+                </TextBox.RenderTransform>
+            </TextBox>
+            <Image x:Name="image1" HorizontalAlignment="Left" Height="171" Margin="10,18.167,0,0" Grid.Row="3" VerticalAlignment="Top" Width="167" Source="{Binding Photo}" Grid.RowSpan="2"/>
+            <TextBlock x:Name="textBlock1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="63" Margin="46,10,0,0" TextWrapping="Wrap" Text="Nouveau" VerticalAlignment="Top" Width="301" FontSize="64" FontWeight="Bold" FontStyle="Italic"/>
+        </Grid>
+
+    </Grid>
+</Page>
+

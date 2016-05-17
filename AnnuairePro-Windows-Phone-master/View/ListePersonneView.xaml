@@ -1,0 +1,65 @@
+﻿<Page
+    x:Class="AnnuairePro.View.ListePersonneView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AnnuairePro.View"
+    xmlns:vm="using:AnnuairePro.ViewModel"
+    xmlns:design="using:AnnuairePro.ViewModel.Design"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ie="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    mc:Ignorable="d"
+    Background="#104e8b">
+
+    <Page.DataContext>
+        <vm:ListePersonneViewModel />
+    </Page.DataContext>
+
+    <d:DesignProperties.DataContext>
+        <design:DesignListePersonneViewModel />
+    </d:DesignProperties.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="268*"/>
+            <RowDefinition Height="27*"/>
+        </Grid.RowDefinitions>
+        <Grid HorizontalAlignment="Left" Height="55" Margin="0,535,0,0" Grid.Row="1" VerticalAlignment="Top" Width="400" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="button" Content="Ajouter" HorizontalAlignment="Center" Margin="8,-3,16.333,-1" VerticalAlignment="Center" Command="{Binding AjouterPersonneCommand}" Height="59" Width="109"/>
+            <Button x:Name="button1" Content="Message" HorizontalAlignment="Center" Margin="7.667,-4,9.667,-2" VerticalAlignment="Center" Height="61" Command="{Binding EnvoyerMessageCommand}" Width="116" Grid.Column="1"/>
+            <Button x:Name="button2" Content="Retour" Grid.Column="2" HorizontalAlignment="Center" Margin="14.333,-3,10,-2" VerticalAlignment="Center" Height="60" Command="{Binding RetourCommand}"/>
+        </Grid>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="516" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="380" ItemsSource="{Binding ListPersonne,Mode=TwoWay}" SelectedItem="{Binding SelectedPersonne, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="5*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="TbkName" Grid.Column="0" Text="{Binding Nom, Mode=TwoWay}" FontSize="20" />
+                        <TextBlock x:Name="TbkPrenom" Grid.Column="1" Text="{Binding Prenom, Mode=TwoWay}" FontSize="20" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ie:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="SelectionChanged">
+                    <core:InvokeCommandAction Command="{Binding SelectionnerPersonneCommand}"  CommandParameter="{Binding ElementName=listView, Path=SelectedItem.Nom}"/>
+                </core:EventTriggerBehavior>
+            </ie:Interaction.Behaviors>
+        </ListView>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="117,10,140,3" TextWrapping="Wrap" Text="{Binding NomPromo, Mode=TwoWay}" VerticalAlignment="Center" FontSize="29.333" FontWeight="Bold" FontStyle="Italic"/>
+    </Grid>
+</Page>
